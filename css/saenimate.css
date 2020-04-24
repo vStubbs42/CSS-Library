@@ -1,0 +1,191 @@
+/*zoomIn: on hover, and on load, increases the size of the element by a factor of 1.8,
+ moving entirely from left to right*/
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(1,1);
+    }
+    100% {
+        transform: scale(1.8,1.8);
+    }
+}
+
+@keyframes zoomOut {
+    0% {
+        transform: scale(1.8,1.8);
+    }
+    25% {
+        transform: scale(1.8,1.8);
+    }
+     100% {
+        transform: scale(1,1);
+    }
+}
+
+.saenimate.zoom:hover {
+    animation: zoomIn 1s forwards;
+    transform-origin: 0% 100%;
+}
+
+.saenimate.zoom {
+	animation: zoomOut 2s;
+	transform-origin: 0% 100%;
+}
+
+/*jump: on hover, the element is displayd in a continous jumping animation, increasing height and
+shortening width upon jumping, as well as increasing width and lowering height upon landing.*/
+
+@keyframes jump { 
+  0% {
+    transform: scale(1) translateY(0); 
+  }
+  20% { 
+    transform: scale(0.8, 1.2) translateY(-75px); 
+  }
+  40% { 
+    transform: scale(0.8, 1.2) translateY(-50px); 
+  }
+  60% { 
+    transform: scale(1) translateY(0); 
+  }  
+  80% {
+    transform: scale(1.2, 0.6); 
+  }
+  100% { 
+    transform: translateY(0); 
+  }
+}
+
+.saenimate.jump:hover {
+  animation: jump 1s infinite linear;
+}
+
+/*rotate: rotates the element clockwise in a continous loop*/
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(90deg);
+    }   
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.saenimate.rotate {
+	animation: rotate 5s linear infinite;
+}
+
+/*sideSlide: on hover, the elements races to its original position from the left side of the screen,
+slightly skewed, returns its tilt to normal, rests for about a second, again becomes slightly skewed,
+before racing to the right side of the screen. the opacity during the movement switches from 0 to 1
+(in its original position), and then back to 0.*/
+
+
+@keyframes sideSlide {
+  0% {
+    transform: translate3d(-100%, 0, 0) skewX(-30deg);
+    opacity: 0;
+  }
+
+  20% {
+    transform: skewX(20deg);
+    opacity: 1;
+  }
+
+  40% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  60% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  80% {
+    transform: skewX(10deg);
+    opacity: 1;
+  }  
+
+  100% {
+    transform: translate3d(100%, 0, 0) skewX(-30deg);
+    opacity: 0;
+  }
+}
+
+.sideSlide:hover {
+	animation: sideSlide 3s;
+}
+
+/*borderDraw: on hover, a red border of 1px is created around the object. the border slides in, top
+and bottom forst, followed by left and right.*/
+
+.saenimate.borderDraw {
+    display:inline-block;
+    position:relative;
+    overflow:hidden;
+    border-radius:5px;
+}
+.saenimate.borderDraw:before, .saenimate.borderDraw:after {
+    display:block;
+    width:100%;
+    content:'';
+    position:absolute;
+    height:0px;
+    border-radius:5px;
+}
+.saenimate.borderDraw:before {
+    border-top:1px solid red;
+    border-right:1px solid red;
+    left:-100%;
+    top:0;
+    height:0px;
+}
+.saenimate.borderDraw:after {
+    border-bottom:1px solid red;
+    border-left:1px solid red;
+    left:100%;
+    bottom:0;
+    height:0px;
+}
+@keyframes left-up {
+    0% {
+        left:100%;
+        height:0;
+    }
+    50% {
+        left:0;
+        height:0;
+    }
+    100% {
+    	left:0;
+        height:100%;
+    }
+}
+@keyframes right-dn {
+    0% {
+        left:-100%;
+        height:0;
+    }
+    50% {
+        left:0;
+        height:0;
+    }
+    100% {
+        left:0;    	
+        height:100%;
+    }
+}
+.saenimate.borderDraw:hover:after {
+    animation: left-up 1s forwards;
+}
+.saenimate.borderDraw:hover:before {
+    animation :right-dn 1s forwards;
+}
